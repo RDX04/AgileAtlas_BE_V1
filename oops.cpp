@@ -1,33 +1,51 @@
 #include "./stdc++.h"
 using namespace std;
-class Student {
- public: 
- int age, roll_no;
- string name, grade;
- // Getter and Setter
- public : 
-    void setName( string Name){
-        name = Name;
+class Customer{
+    public:
+    int account, bal;
+    string name;
+    // default constructor
+    Customer(){
+        account = 1;
+        bal = 100;
+        name = "Ronit Roy";
     }
-     string getName(){
-    return name;
+    // Parameterized Constructor
+    Customer(string name, int account, int bal){
+        this->name = name;
+        this->account = account;
+        this->bal = bal;
+
+    }
+    // Constructor Overloading
+    Customer(string name, int account){
+        this->name = name;
+        this-> account = account;
+        bal = 500;
+    }
+    // Inline Constructor 
+    inline Customer(string name): name(name){}; 
+    // Copy Constructor: a copy constructor must take a reference to the object being copied
+    Customer(Customer &A){
+        this->name = A.name;
+        this->bal = A.bal;
+        this->account = A.account;
+    }
+    void display(){
+         cout << "Hello From Constructor" << " "<< account<< " "<<bal<< " "<< name << endl;
     }
 };
 int main()
 {
-    Student s1 ;
-    Student s2;
-    Student *s3 = new Student ;
-    (*s3).name = "Hello";
-    /* First way of assign value to class keys and creating objetcs*/
-    // s1.name = "Ronit";
-    // s1.age = 24;
-    // s1.grade = "A+";
-    // s1.roll_no = 241;
-    // cout << s1.name << " " << s1.age << " " << s1.grade << " " << s1.roll_no;
-
-    s1.setName("Ronit");
-    s2.setName("Raju");
-    cout << s1.getName()<< " "<< s2.getName() << " " << s3->getName();
+    Customer C1;
+    C1.display();
+    Customer C2("Ronit Roy", 2, 200);
+    C2.display();
+    Customer C3("Ronit Roy", 3);
+    C3.display();
+    Customer C4("Ronit");
+    C4.display();
+    Customer C5(C2);
+    C5.display();
     return 0;
 }
